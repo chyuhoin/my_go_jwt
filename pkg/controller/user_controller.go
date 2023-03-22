@@ -22,17 +22,18 @@ func (ctl *UserController) Login(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"msg": err.Error()})
 		return
 	}
-	if ctl.userService.Login(&user) {
-		c.JSON(http.StatusOK, gin.H{"msg": "success"})
-	} else {
+
+	if token, err := ctl.userService.Login(&user); err != nil {
 		c.JSON(http.StatusOK, gin.H{"msg": "No such people"})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"msg": "success", "token": token})
 	}
 }
 
 func (ctl *UserController) Logout(c *gin.Context) {
-
+	c.JSON(http.StatusBadRequest, gin.H{"msg": "目前还不支持此功能"})
 }
 
 func (ctl *UserController) GetAllUsers(c *gin.Context) {
-
+	c.JSON(http.StatusBadRequest, gin.H{"msg": "目前还不支持此功能"})
 }
