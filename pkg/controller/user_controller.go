@@ -26,7 +26,7 @@ func (ctl *UserController) Login(c *gin.Context) {
 	if token, err := ctl.userService.Login(&user); err != nil {
 		c.JSON(http.StatusOK, gin.H{"msg": "No such people"})
 	} else {
-		c.JSON(http.StatusOK, gin.H{"msg": "success", "token": token})
+		c.JSON(http.StatusOK, gin.H{"msg": "success", "token": token, "user": user})
 	}
 }
 

@@ -11,7 +11,7 @@ func main() {
 
 	config.RouterConfig(r)
 
-	err := r.Run(":8080")
+	err := r.Run(":8888")
 	if err != nil {
 		fmt.Println(err.Error())
 		return

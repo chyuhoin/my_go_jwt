@@ -1,7 +1,7 @@
 package service
 
 import (
-	"errors"
+	"fmt"
 	"proj1/pkg/dao"
 	"proj1/pkg/entity"
 	"proj1/pkg/utils"
@@ -17,12 +17,15 @@ func NewUserService() *UserService {
 
 func (service *UserService) Login(user *entity.User) (*string, error) {
 	res := service.userMapper.GetUserByNameAndPassword(user.Username, user.Password)
-	if res == nil {
-		return nil, errors.New("No ")
+	fmt.Println(res.Id)
+	if res.Id == "" {
+		return nil, utils.NoSuchUser
 	}
 	token, err := utils.GenerateToken(res, 60*24)
 	if err != nil {
 		return nil, err
 	}
+	user.Id = res.Id
+	user.Role = res.Role
 	return token, nil
 }
