@@ -19,7 +19,7 @@ func GetOrmEngine() *xorm.Engine {
 		return engine
 	}
 
-	info, err := parseConfig("./pkg/utils/database_config.json")
+	info, err := parseConfig("database_config.json")
 	if err != nil {
 		return nil
 	}
